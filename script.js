@@ -1,6 +1,5 @@
 window.onload = () => {
 
-  /* INTRO */
   const intro = document.getElementById("intro");
   const work = document.getElementById("work");
 
@@ -11,8 +10,6 @@ window.onload = () => {
       work.classList.add("loaded");
     }, 1500);
   }, 2000);
-
-  if (!window.Vimeo) return;
 
   document.querySelectorAll("[data-video]").forEach(project => {
     const iframe = project.querySelector("iframe");
@@ -27,7 +24,7 @@ window.onload = () => {
     let playing = false;
     let interval = null;
 
-    /* Hover preview (desktop only) */
+    /* Hover preview */
     if (window.matchMedia("(hover: hover)").matches) {
       project.addEventListener("mouseenter", () => {
         player.setVolume(0);
@@ -35,19 +32,23 @@ window.onload = () => {
       });
 
       project.addEventListener("mouseleave", () => {
-        if (!playing) player.pause().catch(() => {});
+        if (!project.classList.contains("is-fullscreen")) {
+          player.pause().catch(() => {});
+        }
       });
     }
 
     /* CLICK → FULLSCREEN */
-    clickLayer.addEventListener("click", () => {
+    clickLayer.addEventListener("click", async () => {
       watch.style.display = "none";
-      playing = true;
+      project.classList.add("is-fullscreen");
 
-      player.setVolume(1);
-      player.play().catch(() => {});
+      await player.setVolume(1);
+      await player.play();
+
       iframe.requestFullscreen();
 
+      playing = true;
       interval = setInterval(updateProgress, 200);
     });
 
@@ -58,7 +59,7 @@ window.onload = () => {
         });
     }
 
-    playBtn.onclick = e => {
+    playBtn.addEventListener("click", e => {
       e.stopPropagation();
       if (playing) {
         player.pause();
@@ -68,21 +69,22 @@ window.onload = () => {
         playBtn.textContent = "PAUSE";
       }
       playing = !playing;
-    };
+    });
 
-    timeline.onclick = e => {
+    timeline.addEventListener("click", e => {
       e.stopPropagation();
       const rect = timeline.getBoundingClientRect();
       const percent = (e.clientX - rect.left) / rect.width;
       player.getDuration().then(d => player.setCurrentTime(d * percent));
-    };
+    });
 
     document.addEventListener("fullscreenchange", () => {
       if (!document.fullscreenElement) {
-        playing = false;
+        project.classList.remove("is-fullscreen");
         watch.style.display = "";
         player.pause();
         clearInterval(interval);
+        playing = false;
       }
     });
   });

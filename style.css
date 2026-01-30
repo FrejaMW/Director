@@ -38,7 +38,6 @@ body {
   opacity: 0;
   transition: opacity 1.5s ease;
 }
-
 #work.loaded {
   opacity: 1;
 }
@@ -80,7 +79,6 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   letter-spacing: 0.3em;
-  opacity: 0.85;
 }
 
 .title {
@@ -98,7 +96,6 @@ body {
   pointer-events: none;
 }
 
-/* WATCH */
 .watch {
   position: absolute;
   top: 50%;
@@ -132,7 +129,8 @@ body {
   pointer-events: auto;
 }
 
-:fullscreen .controls {
+/* 🔥 THIS IS THE FIX */
+.project.is-fullscreen .controls {
   display: flex;
 }
 
@@ -142,6 +140,7 @@ body {
   color: white;
   padding: 10px 20px;
   letter-spacing: 0.2em;
+  cursor: pointer;
 }
 
 .timeline {
