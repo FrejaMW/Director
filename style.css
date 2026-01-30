@@ -1,3 +1,7 @@
+:root {
+  --intro-pink: #f2a1b3;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -14,7 +18,7 @@ body {
 #intro {
   position: fixed;
   inset: 0;
-  background: black;
+  background: var(--intro-pink);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,6 +27,7 @@ body {
 }
 
 #intro h1 {
+  color: black;
   font-size: 3rem;
   letter-spacing: 0.15em;
   font-weight: 300;
@@ -39,10 +44,6 @@ body {
 }
 
 /* HERO */
-.hero {
-  width: 100%;
-}
-
 .hero-row {
   display: flex;
   width: 100%;
@@ -79,7 +80,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   letter-spacing: 0.3em;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 .title {
@@ -97,6 +98,7 @@ body {
   pointer-events: none;
 }
 
+/* WATCH */
 .watch {
   position: absolute;
   top: 50%;
@@ -109,6 +111,14 @@ body {
 
 .project:hover .watch {
   opacity: 0.85;
+}
+
+/* CLICK LAYER */
+.click-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  cursor: pointer;
 }
 
 /* CONTROLS */
@@ -164,8 +174,8 @@ footer {
 footer a {
   color: white;
   text-decoration: none;
-  opacity: 0.6;
   letter-spacing: 0.2em;
+  opacity: 0.6;
 }
 
 /* MOBILE */

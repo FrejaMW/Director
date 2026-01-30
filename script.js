@@ -1,4 +1,6 @@
 window.onload = () => {
+
+  /* INTRO */
   const intro = document.getElementById("intro");
   const work = document.getElementById("work");
 
@@ -14,17 +16,18 @@ window.onload = () => {
 
   document.querySelectorAll("[data-video]").forEach(project => {
     const iframe = project.querySelector("iframe");
-    const player = new Vimeo.Player(iframe);
-
+    const clickLayer = project.querySelector(".click-layer");
+    const watch = project.querySelector(".watch");
     const playBtn = project.querySelector(".playpause");
     const timeline = project.querySelector(".timeline");
     const progress = project.querySelector(".progress");
-    const watch = project.querySelector(".watch");
+
+    const player = new Vimeo.Player(iframe);
 
     let playing = false;
     let interval = null;
 
-    // Hover preview (desktop)
+    /* Hover preview (desktop only) */
     if (window.matchMedia("(hover: hover)").matches) {
       project.addEventListener("mouseenter", () => {
         player.setVolume(0);
@@ -36,15 +39,15 @@ window.onload = () => {
       });
     }
 
-    // Click → fullscreen
-    project.addEventListener("click", () => {
-      if (watch) watch.style.display = "none";
+    /* CLICK → FULLSCREEN */
+    clickLayer.addEventListener("click", () => {
+      watch.style.display = "none";
       playing = true;
 
       player.setVolume(1);
-      player.play();
-
+      player.play().catch(() => {});
       iframe.requestFullscreen();
+
       interval = setInterval(updateProgress, 200);
     });
 
@@ -77,7 +80,7 @@ window.onload = () => {
     document.addEventListener("fullscreenchange", () => {
       if (!document.fullscreenElement) {
         playing = false;
-        if (watch) watch.style.display = "";
+        watch.style.display = "";
         player.pause();
         clearInterval(interval);
       }
