@@ -60,6 +60,15 @@ body {
   overflow: hidden;
 }
 
+/* 🔥 REQUIRED FIX */
+.project iframe {
+  pointer-events: none;
+}
+
+.project.is-fullscreen iframe {
+  pointer-events: auto;
+}
+
 .project iframe,
 .project img {
   width: 100%;
@@ -129,7 +138,7 @@ body {
   pointer-events: auto;
 }
 
-/* 🔥 THIS IS THE FIX */
+/* SHOW CONTROLS IN FULLSCREEN */
 .project.is-fullscreen .controls {
   display: flex;
 }

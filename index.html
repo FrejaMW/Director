@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Freja Majlund Westh</title>
+
   <link rel="stylesheet" href="style.css">
+
+  <!-- Vimeo Player API (REQUIRED) -->
+  <script src="https://player.vimeo.com/api/player.js"></script>
 </head>
 <body>
 
@@ -22,14 +26,16 @@
     <!-- PROJECT 1 -->
     <div class="project video" data-video>
       <iframe
-        src="https://player.vimeo.com/video/907428484?controls=0&title=0&byline=0&portrait=0"
+        src="https://player.vimeo.com/video/907428484?background=1&muted=1&controls=0&title=0&byline=0&portrait=0"
         allow="autoplay; fullscreen"
+        allowfullscreen
       ></iframe>
 
       <div class="click-layer"></div>
 
       <div class="overlay">
         <span class="watch">WATCH</span>
+
         <div class="controls">
           <button class="playpause">PAUSE</button>
           <div class="timeline">
@@ -39,7 +45,7 @@
       </div>
     </div>
 
-    <!-- PROJECT 2 – BEFORE -->
+    <!-- PROJECT 2 – UPCOMING -->
     <div class="project upcoming">
       <img src="project2.jpg" alt="Before">
       <div class="overlay">
@@ -53,14 +59,16 @@
   <div class="hero-row center">
     <div class="project video" data-video>
       <iframe
-        src="https://player.vimeo.com/video/795878328?controls=0&title=0&byline=0&portrait=0"
+        src="https://player.vimeo.com/video/795878328?background=1&muted=1&controls=0&title=0&byline=0&portrait=0"
         allow="autoplay; fullscreen"
+        allowfullscreen
       ></iframe>
 
       <div class="click-layer"></div>
 
       <div class="overlay">
         <span class="watch">WATCH</span>
+
         <div class="controls">
           <button class="playpause">PAUSE</button>
           <div class="timeline">
@@ -76,14 +84,16 @@
 <section class="grid">
   <div class="project video" data-video>
     <iframe
-      src="https://player.vimeo.com/video/881654106?controls=0&title=0&byline=0&portrait=0"
+      src="https://player.vimeo.com/video/881654106?background=1&muted=1&controls=0&title=0&byline=0&portrait=0"
       allow="autoplay; fullscreen"
+      allowfullscreen
     ></iframe>
 
     <div class="click-layer"></div>
 
     <div class="overlay">
       <span class="watch">WATCH</span>
+
       <div class="controls">
         <button class="playpause">PAUSE</button>
         <div class="timeline">
@@ -100,7 +110,6 @@
 
 </main>
 
-<script src="https://player.vimeo.com/api/player.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

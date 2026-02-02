@@ -46,7 +46,9 @@ window.onload = () => {
       await player.setVolume(1);
       await player.play();
 
-      iframe.requestFullscreen();
+      (project.requestFullscreen ||
+       project.webkitRequestFullscreen ||
+       project.msRequestFullscreen).call(project);
 
       playing = true;
       interval = setInterval(updateProgress, 200);
