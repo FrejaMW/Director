@@ -38,14 +38,16 @@ window.onload = () => {
       });
     }
 
-    /* CLICK → FULLSCREEN */
+    /* CLICK → PLAY + FULLSCREEN */
     clickLayer.addEventListener("click", async () => {
       watch.style.display = "none";
       project.classList.add("is-fullscreen");
+      project.classList.add("is-playing");
 
       await player.setVolume(1);
       await player.play();
 
+      // Vimeo fullscreen via native browser
       (project.requestFullscreen ||
        project.webkitRequestFullscreen ||
        project.msRequestFullscreen).call(project);
@@ -66,9 +68,11 @@ window.onload = () => {
       if (playing) {
         player.pause();
         playBtn.textContent = "PLAY";
+        project.classList.remove("is-playing");
       } else {
         player.play();
         playBtn.textContent = "PAUSE";
+        project.classList.add("is-playing");
       }
       playing = !playing;
     });
@@ -83,6 +87,7 @@ window.onload = () => {
     document.addEventListener("fullscreenchange", () => {
       if (!document.fullscreenElement) {
         project.classList.remove("is-fullscreen");
+        project.classList.remove("is-playing");
         watch.style.display = "";
         player.pause();
         clearInterval(interval);
